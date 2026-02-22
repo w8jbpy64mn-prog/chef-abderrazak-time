@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مطعم وقت الصحة | Healthy Tem - Label Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1 id="appTitle">مطعم وقت الصحة | Healthy Tem</h1>
+        <p id="appSubtitle">نظام إدارة وطباعة الملصقات الغذائية</p>
+      </div>
+      <div class="toolbar">
+        <button id="langToggle" class="btn secondary">English</button>
+        <button id="printBulk" class="btn">طباعة جماعية A4</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2 data-i18n="products">إدارة المنتجات</h2>
+        <div class="search-row">
+          <input id="searchInput" placeholder="ابحث بالاسم أو التصنيف..." />
+          <select id="categoryFilter">
+            <option value="">كل التصنيفات</option>
+          </select>
+        </div>
+
+        <form id="productForm" class="grid">
+          <input type="hidden" id="productId" />
+          <label><span data-i18n="nameAr">الاسم بالعربي</span><input id="nameAr" required /></label>
+          <label><span data-i18n="nameEn">الاسم بالإنجليزي</span><input id="nameEn" required /></label>
+          <label><span data-i18n="category">التصنيف</span><input id="category" placeholder="ساندويتشات" required /></label>
+          <label><span data-i18n="calories">السعرات (kcal)</span><input id="kcal" type="number" min="0" required /></label>
+          <label><span data-i18n="protein">البروتين (g)</span><input id="protein" type="number" min="0" step="0.1" required /></label>
+          <label><span data-i18n="carbs">الكربوهيدرات (g)</span><input id="carbs" type="number" min="0" step="0.1" required /></label>
+          <label><span data-i18n="fat">الدهون (g)</span><input id="fat" type="number" min="0" step="0.1" required /></label>
+          <label><span data-i18n="fiber">الألياف (g)</span><input id="fiber" type="number" min="0" step="0.1" required /></label>
+          <label><span data-i18n="serving">حجم الحصة</span><input id="servingSize" placeholder="ساندويتش كامل / 250g" required /></label>
+          <label class="full"><span data-i18n="notes">ملاحظات</span><textarea id="notes" rows="2"></textarea></label>
+          <div class="actions full">
+            <button class="btn" type="submit" id="saveProduct">حفظ المنتج</button>
+            <button class="btn secondary" type="button" id="resetForm">إلغاء</button>
+          </div>
+        </form>
+
+        <div id="productsList" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="labelDesigner">مصمم الملصق</h2>
+        <div class="grid">
+          <label><span data-i18n="selectProduct">اختر منتج</span><select id="labelProduct"></select></label>
+          <label><span data-i18n="copies">عدد النسخ</span><input id="copies" type="number" min="1" value="1" /></label>
+          <label><span>Batch</span><input id="batch" placeholder="B-001" /></label>
+          <label><span>Production</span><input id="production" type="date" /></label>
+          <label><span>Expiry</span><input id="expiry" type="date" /></label>
+          <label><span data-i18n="createdBy">اسم المستخدم</span><input id="createdBy" placeholder="Admin" /></label>
+        </div>
+        <div class="actions">
+          <button class="btn" id="saveLabel">حفظ الملصق</button>
+          <button class="btn secondary" id="printLabel">طباعة مباشرة</button>
+        </div>
+
+        <div class="label-preview" id="labelPreview"></div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="history">سجل الملصقات</h2>
+        <div id="historyList"></div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="settings">الإعدادات</h2>
+        <form id="settingsForm" class="grid">
+          <label><span data-i18n="brandName">اسم البراند</span><input id="brandName" /></label>
+          <label><span data-i18n="logoUrl">رابط الشعار</span><input id="logoUrl" /></label>
+          <label><span data-i18n="primaryColor">اللون الأساسي</span><input id="primaryColor" type="color" value="#1b8f5a" /></label>
+          <label><span>QR Link</span><input id="qrLink" /></label>
+          <label><span data-i18n="role">الدور</span>
+            <select id="currentRole">
+              <option value="admin">Admin</option>
+              <option value="staff">Staff</option>
+            </select>
+          </label>
+          <div class="actions full">
+            <button class="btn" type="submit" data-i18n="saveSettings">حفظ الإعدادات</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <template id="productTableTpl">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th data-i18n="nameAr">الاسم بالعربي</th><th data-i18n="category">التصنيف</th><th data-i18n="calories">السعرات</th><th data-i18n="status">الحالة</th><th data-i18n="actions">إجراءات</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+:root {
+  --primary: #0f9f7a;
+  --bg: #f3f4f6;
+  --text: #1f2937;
+}
+* { box-sizing: border-box; font-family: Arial, Tahoma, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fff; border-bottom: 1px solid #d1d5db; }
+.topbar h1 { margin: 0; font-size: 1.2rem; }
+.topbar p { margin: .2rem 0 0; opacity: .7; }
+.tabs { display: flex; gap: .5rem; padding: .75rem 1rem; background: #fff; border-bottom: 1px solid #d1d5db; flex-wrap: wrap; }
+.tab { border: 1px solid #cbd5e1; background: #f8fafc; padding: .45rem .8rem; border-radius: 8px; cursor: pointer; }
+.tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+main { padding: 1rem; }
+.page { display: none; }
+.page.active { display: block; }
+.card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 10px #00000010; margin-bottom: 1rem; }
+.grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .7rem; }
+label { display: flex; flex-direction: column; gap: .25rem; font-size: .9rem; }
+input, select, textarea, button { padding: .55rem .65rem; border: 1px solid #cbd5e1; border-radius: 8px; }
+.full { grid-column: 1 / -1; }
+.actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; }
+.btn { background: var(--primary); color: #fff; border: none; cursor: pointer; }
+.btn.secondary { background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; }
+.search-row { display: grid; grid-template-columns: 1fr 180px; gap: .5rem; margin-bottom: .7rem; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .45rem; border-bottom: 1px solid #e5e7eb; text-align: start; font-size: .9rem; }
+.label-preview { width: 5cm; min-height: 7cm; border: 1px solid #8d8d8d; background: #efefef; overflow: hidden; }
+
+/* الشكل المرجعي */
+.fact-card { border: 2px solid #5a5a5a; background: #dcdcdc; min-height: 7cm; }
+.fact-title { font-size: .62cm; font-weight: 900; text-align: center; color: #3d3d3d; border-bottom: 2px solid #4f4f4f; padding: .14cm .1cm; }
+.fact-servings { text-align: center; font-size: .18cm; border-bottom: 1px solid #6f6f6f; padding: .04cm .1cm; }
+.fact-serving-size { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #4f4f4f; font-size: .2cm; }
+.serving-pill { background: #0d86bc; color: #fff; font-weight: 800; padding: .04cm .1cm; }
+.serving-value { background: var(--primary); color: #fff; font-weight: 800; text-align: center; padding: .04cm .1cm; }
+.fact-subline { text-align: center; font-size: .16cm; border-bottom: 2px solid #5a5a5a; padding: .05cm .1cm; background: #efefef; }
+.fact-kcal-row { display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 900; font-size: .3cm; background: linear-gradient(90deg,#0d8ac1,var(--primary)); border-bottom: 2px solid #4b4b4b; padding: .07cm .14cm; }
+.fact-kcal-row strong { font-size: .55cm; line-height: 1; }
+.fact-dv { font-size: .17cm; font-weight: 800; border-bottom: 1px solid #5a5a5a; background: #f3f3f3; padding: .05cm .1cm; }
+.fact-table { width: 100%; border-collapse: collapse; background: #d9d9d9; }
+.fact-table td { font-size: .17cm; border-bottom: 1px solid #777; padding: .05cm .08cm; }
+.fact-table .dv { width: 18%; font-weight: 700; }
+.fact-table .name { width: 42%; font-weight: 700; }
+.fact-table .val { width: 40%; text-align: end; }
+.fact-table .strong td { font-size: .22cm; font-weight: 900; }
+.fact-meta { font-size: .14cm; border-top: 2px solid #5f5f5f; background: #ececec; padding: .06cm .1cm; }
+.fact-note { font-size: .14cm; line-height: 1.4; text-align: center; border-top: 2px solid #5a5a5a; background: #ececec; color: #444; padding: .09cm .12cm; }
+
+/* قوالب إضافية */
+.fact-card.clean { background: #f8fafc; border-color: #9ca3af; }
+.fact-card.clean .fact-table { background: #f1f5f9; }
+.fact-card.bold { background: #111827; color: #fff; border-color: #000; }
+.fact-card.bold .fact-title,
+.fact-card.bold .fact-servings,
+.fact-card.bold .fact-subline,
+.fact-card.bold .fact-dv,
+.fact-card.bold .fact-note,
+.fact-card.bold .fact-meta,
+.fact-card.bold .fact-table,
+.fact-card.bold .fact-table td { color: #fff; background: #1f2937; border-color: #374151; }
+
+.badge { padding: .2rem .45rem; border-radius: 999px; font-size: .75rem; }
+.badge.active { background: #dcfce7; }
+.badge.hidden { background: #fee2e2; }
+@media (max-width: 760px){ .grid { grid-template-columns: 1fr; } .search-row { grid-template-columns: 1fr; } }
+@media print {
+  body * { visibility: hidden; }
+  #labelPreview, #labelPreview * { visibility: visible; }
+  #labelPreview { position: absolute; inset: 0 auto auto 0; }
+}
